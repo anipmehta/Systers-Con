@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/location"
+        android:title="Location"
+        android:icon="@drawable/ic_menu_send" />
+    <item android:id="@+id/detail"
+        android:title="Details"
+        android:icon="@drawable/ic_menu_share" />
+    <item android:id="@+id/speakers"
+        android:title="Speakers"
+        android:icon="@drawable/ic_menu_manage" />
+</menu>
