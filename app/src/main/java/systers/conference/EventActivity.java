@@ -9,6 +9,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
@@ -33,7 +34,10 @@ public class EventActivity extends AppCompatActivity{
         bottomNavigationView.setSelectedItemId(R.id.detail);
         FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
         Fragment fragment = null;
-        fragment = DetailFragment.newInstance();
+        Bundle args = new Bundle();
+        args.putString("Title","");
+        args.putString("Image",getIntent().getStringExtra("url"));
+        fragment = DetailFragment.newInstance(args);
         fragmentTransaction.add(R.id.frameLayout, fragment);
         fragmentTransaction.commit();
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -45,7 +49,11 @@ public class EventActivity extends AppCompatActivity{
                         fragment = LocationFragment.newInstance();
                         break;
                     case R.id.detail:
-                        fragment = DetailFragment.newInstance();
+                        Bundle args = new Bundle();
+                        args.putString("Title","");
+                        args.putString("Image",getIntent().getStringExtra("url"));
+                        fragment = DetailFragment.newInstance(args);
+//                        fragment.setArguments(args);
                         break;
                     case R.id.speakers:
                         fragment = SpeakerListFragment.newInstance();
@@ -59,5 +67,11 @@ public class EventActivity extends AppCompatActivity{
                 return true;
             }
         });
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.event_toolbar, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }

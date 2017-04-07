@@ -63,6 +63,7 @@ public class HomeActivity extends AppCompatActivity
             @Override
             public void onItemClick(View view, int position) {
                 Intent intent = new Intent(HomeActivity.this, EventActivity.class);
+                intent.putExtra("url", url.get(position));
                 Log.i("hell_selected","Item clicked" + position);
                 startActivity(intent);
             }

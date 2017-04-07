@@ -26,6 +26,7 @@ import systers.conference.R;
 public class LocationFragment extends Fragment implements OnMapReadyCallback{
     private MapView mapView;
     private GoogleMap googleMap;
+    private Bundle args;
 
     @Nullable
     @Override
@@ -49,7 +50,6 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback{
     public static Fragment newInstance() {
 
         Bundle args = new Bundle();
-
         LocationFragment fragment = new LocationFragment();
         fragment.setArguments(args);
         return fragment;
