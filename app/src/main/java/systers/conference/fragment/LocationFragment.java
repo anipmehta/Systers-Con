@@ -63,5 +63,6 @@ public class LocationFragment extends Fragment implements OnMapReadyCallback{
 //        googleMap.setOnMarkerClickListener(this);
 
            googleMap.addMarker(new MarkerOptions().position(new LatLng(29.6436, -82.3549)));
+           googleMap.addMarker(new MarkerOptions().position(new LatLng(29.6499, -82.3486)));
         }
 }

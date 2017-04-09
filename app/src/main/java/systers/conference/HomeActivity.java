@@ -1,6 +1,7 @@
 package systers.conference;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -18,6 +19,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
@@ -35,6 +37,9 @@ public class HomeActivity extends AppCompatActivity
     private EventAdapter eventAdapter;
     private ArrayList<String> url;
     private ImageView head;
+    private SharedPreferences sharedPreferences;
+    private TextView user_name;
+    private TextView user_email;
 
 
     @Override
@@ -49,11 +54,12 @@ public class HomeActivity extends AppCompatActivity
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        url.add("http://engageduniversity.blogs.wesleyan.edu/files/2016/08/conference-room.jpg");
-        url.add("http://2.bp.blogspot.com/-u_rB5tDECEM/ToNheuIi0KI/AAAAAAAABc8/9SobkZhMLGg/s640/conferencia+geral+sud+lds+mormon+conference+thomas+s.+monson+first+presidence.jpg");
+        sharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
         url.add("https://marketinginsidergroup.com/wp-content/uploads/2017/01/9323706488_7c288a9659_b.jpg");
         url.add("https://s-media-cache-ak0.pinimg.com/originals/6c/bd/2b/6cbd2bc4420a0b2c0f4bc43bc05c1293.jpg");
         url.add("http://ghc.anitaborg.org/wp-content/uploads/sites/2/2016/01/crowd-conference-overview.jpg");
+        url.add("http://engageduniversity.blogs.wesleyan.edu/files/2016/08/conference-room.jpg");
+        url.add("http://2.bp.blogspot.com/-u_rB5tDECEM/ToNheuIi0KI/AAAAAAAABc8/9SobkZhMLGg/s640/conferencia+geral+sud+lds+mormon+conference+thomas+s.+monson+first+presidence.jpg");
         eventAdapter = new EventAdapter(this, url);
         mRecyclerView.setAdapter(eventAdapter);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -83,7 +89,12 @@ public class HomeActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         head = (ImageView) navigationView.getHeaderView(0).findViewById(R.id.nav_image);
-        Glide.with(this).load("https://www.newschool.edu/uploadedImages/Parsons/Profiles/jamer_hunt_profile.jpg?n=4468").transform(new CircleTransform(this)).into(head);
+        user_name = (TextView) navigationView.getHeaderView(0).findViewById(R.id.name);
+        user_email = (TextView) navigationView.getHeaderView(0).findViewById(R.id.email);
+        user_name.setText(sharedPreferences.getString("name","Jake Wharton"));
+        user_email.setText(sharedPreferences.getString("email","jakew@gmail.com"));
+        System.out.println(sharedPreferences.getString("image",""));
+        Glide.with(this).load(sharedPreferences.getString("image","https://www.newschool.edu/uploadedImages/Parsons/Profiles/jamer_hunt_profile.jpg?n=4468")).transform(new CircleTransform(this)).into(head);
     }
 
     @Override

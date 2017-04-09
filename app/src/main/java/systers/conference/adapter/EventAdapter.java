@@ -41,6 +41,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.ViewHolder> 
     public void onBindViewHolder(ViewHolder holder, int position) {
         View view = holder.itemView;
         ImageView event_image = (ImageView) view.findViewById(R.id.image);
+        TextView title = (TextView) view.findViewById(R.id.event_name);
+        title.setText("Main Event");
         Glide.with(context).load(url.get(position)).centerCrop().into(event_image);
     }
 
