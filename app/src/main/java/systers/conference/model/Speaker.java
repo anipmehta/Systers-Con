@@ -1,5 +1,7 @@
 package systers.conference.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.io.Serializable;
 
 /**
@@ -7,9 +9,11 @@ import java.io.Serializable;
  */
 
 public class Speaker implements Serializable {
+    @SerializedName("name")
     private String name;
+    @SerializedName("email")
     private String event_name;
-    private String image_url;
+    private String image_url = "https://www.newschool.edu/uploadedImages/Parsons/Profiles/jamer_hunt_profile.jpg?n=4468";
 
     public String getName() {
         return name;

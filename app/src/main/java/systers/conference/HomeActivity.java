@@ -140,7 +140,8 @@ public class HomeActivity extends AppCompatActivity
         } else if (id == R.id.nav_map) {
 
         } else if (id == R.id.nav_profile) {
-
+            Intent intent = new Intent(HomeActivity.this,Profile.class);
+            startActivity(intent);
         } else if (id == R.id.nav_survey) {
 
         } else if (id == R.id.nav_share) {

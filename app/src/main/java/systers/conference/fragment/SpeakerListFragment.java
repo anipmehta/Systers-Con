@@ -9,10 +9,17 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
 
+import com.google.gson.Gson;
+
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 
 import systers.conference.R;
 import systers.conference.adapter.SpeakerAdapter;
+import systers.conference.model.Attendee;
+import systers.conference.model.AttendeeDetails;
+import systers.conference.model.Response;
 import systers.conference.model.Speaker;
 
 /**
@@ -41,9 +48,15 @@ public class SpeakerListFragment extends Fragment {
         speaker2.setImage_url("https://www.erdw.ethz.ch/content/specialinterest/erdw/d-erdw/en/personen/profil.person_image.jpeg?persid=206195");
         speaker2.setEvent_name("Event 2");
         speaker2.setName("Robert Stempel");
+        Gson gson = new Gson();
+        Attendee attendee = null;
+
+        BufferedReader jsonReader = new BufferedReader(new InputStreamReader(getResources().openRawResource(R.raw.attendee)));
+        System.out.println(jsonReader);
+        attendee = gson.fromJson(jsonReader, Attendee.class);
         speakers.add(speaker1);
         speakers.add(speaker2);
-        speakerAdapter = new SpeakerAdapter(getActivity(), speakers);
+        speakerAdapter = new SpeakerAdapter(getActivity(), attendee.getSpeakers());
         speakers_list.setAdapter(speakerAdapter);
         super.onViewCreated(view, savedInstanceState);
     }
